@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+    branches: [main, "ai/**"]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: project
+        run: |
+          if [ -f pyproject.toml ]; then
+            echo "has_project=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_project=false" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.project.outputs.has_project == 'true'
+        uses: astral-sh/setup-uv@v6
+      - if: steps.project.outputs.has_project == 'true'
+        run: uv sync --locked || uv sync
+      - if: steps.project.outputs.has_project == 'true'
+        run: uv run ruff check .
+      - if: steps.project.outputs.has_project == 'true'
+        run: uv run pytest -q
