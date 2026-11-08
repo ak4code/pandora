@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# uv
+.venv/
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+test_db.sqlite3
+media/
+staticfiles/
+
+# Testing and tooling
+.pytest_cache/
+.ruff_cache/
+.ty/
+.coverage
+coverage.xml
+htmlcov/
+
+# Editors and OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Environment (no secrets in the repository)
+.env
+.env.*
+!.env.example
