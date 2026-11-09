@@ -1,0 +1,42 @@
+[project]
+name = "pandora"
+version = "0.1.0"
+description = "Pandora service skeleton: Django 5.2 LTS with uv, ruff, ty and pre-commit"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.2,<6.0",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit==4.7.0",
+    "pytest==9.2.0",
+    "pytest-django==4.14.0",
+    "ruff==0.17.4",
+    "ty==0.0.99",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "UP",
+    "B",
+    "SIM",
+]
+
+[tool.ty]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+pythonpath = [
+    ".",
+]
